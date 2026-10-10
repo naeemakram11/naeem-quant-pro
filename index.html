@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NAEEM QUANT PRO</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #0b1020;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    h1 { color: #38bdf8; }
+    .card {
+      background: #172033;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 18px;
+      margin: 15px 0;
+    }
+    button {
+      padding: 12px 20px;
+      margin: 5px;
+      border: 0;
+      border-radius: 6px;
+      color: white;
+      font-weight: bold;
+    }
+    .buy { background: #16a34a; }
+    .sell { background: #dc2626; }
+    input {
+      padding: 8px;
+      max-width: 130px;
+    }
+  </style>
+</head>
+<body>
+  <h1>NAEEM QUANT PRO</h1>
+  <p>SMC Strategy Trading Dashboard</p>
+
+  <div class="card">
+    <h2>Market Structure</h2>
+    <p>BOS - Break of Structure</p>
+    <p>CHoCH - Change of Character</p>
+    <p>Order Blocks | Fair Value Gaps</p>
+    <p>Liquidity Sweeps</p>
+  </div>
+
+  <div class="card">
+    <h2>Risk Calculator</h2>
+    <label>Account Balance ($)</label><br>
+    <input id="balance" type="number" value="1000">
+    <br><br>
+    <label>Risk Percentage (%)</label><br>
+    <input id="risk" type="number" value="1" step="0.1">
+    <br><br>
+    <button onclick="calculate()" style="background:#0284c7">
+      Calculate Risk
+    </button>
+    <p id="result">Risk amount: $10.00</p>
+  </div>
+
+  <div class="card">
+    <h2>Demo Trading Panel</h2>
+    <button class="buy" onclick="demo('BUY')">BUY</button>
+    <button class="sell" onclick="demo('SELL')">SELL</button>
+    <p id="status">Demo mode - no real trades.</p>
+  </div>
+
+  <p>Educational prototype. Market data is not live.</p>
+
+  <script>
+    function calculate() {
+      const balance = Number(document.getElementById('balance').value);
+      const risk = Number(document.getElementById('risk').value);
+
+      if (balance <= 0 || risk < 0 || risk > 100) {
+        document.getElementById('result').textContent =
+          'Enter valid values.';
+        return;
+      }
+
+      document.getElementById('result').textContent =
+        'Risk amount: $' + (balance * risk / 100).toFixed(2);
+    }
+
+    function demo(side) {
+      document.getElementById('status').textContent =
+        side + ' selected - demo only, no trade placed.';
+    }
+  </script>
+</body>
+</html>
